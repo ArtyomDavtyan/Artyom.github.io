@@ -1,0 +1,37 @@
+@startuml
+skinparam monochrome true
+hide circle
+hide methods
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Пользователь_системы"
+actor "Библиотекарь"
+actor "Модуль_библиотекаря" 
+actor "Программный_модуль" 
+
+Модуль_библиотекаря --> Программный_модуль
+
+rectangle Система {
+
+usecase case1 as "Получить документ на книгу"
+usecase case2 as "Подтвердить документ на книгу"
+usecase case5 as "Поиск книги на складе"
+usecase case3 as "Получить данные о читателе"
+usecase case4 as "Подтвердить данные о читателе"
+usecase case6 as "Выдать книгу"
+ Пользователь_системы <-- Библиотекарь
+ Библиотекарь -- case1
+ (case1) .> (case2)
+ (case2) .> (case5)  
+ (case4) .> (case6) 
+ (case3) .> (case4)
+ (case5) .> (case6)
+ case1 -- Модуль_библиотекаря
+ case2 -- Модуль_библиотекаря
+ case3 -- Модуль_библиотекаря
+ case4 -- Модуль_библиотекаря 
+ case5 -- Модуль_библиотекаря 
+ case6 -- Модуль_библиотекаря 
+}
+@enduml
