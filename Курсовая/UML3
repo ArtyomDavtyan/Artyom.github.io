@@ -1,0 +1,39 @@
+@startuml
+skinparam monochrome true
+
+actor "Библиотекарь" as user
+participant "Клиент приложения" as cli
+database "База данных" as db
+
+activate user
+activate cli
+
+user -> cli: Получить данные о заказанной книге
+cli -> user: Проверить данные о заказанной книге
+
+user -> cli: Внести данные о книге
+
+
+cli-> db: Сохранение данных о книге
+activate db
+db-> cli: 
+deactivate db
+
+cli -> user: Получить данные о читателе
+
+user -> cli: Проверить данные о читателе
+cli -> user: Внести данные о читателе
+
+user -> cli: Поиск книги на складе
+
+cli-> db: Сохранение данных о читателе
+activate db
+db-> cli:
+deactivate db
+
+cli-> db: Оформить заказ на выдачу
+activate db
+db-> cli:
+deactivate db
+cli -> user: "Выдать книгу"
+@enduml
